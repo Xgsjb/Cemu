@@ -5,6 +5,8 @@ import android.util.DisplayMetrics;
 
 import info.cemu.Cemu.NativeLibrary;
 import info.cemu.Cemu.utils.FileUtil;
+import info.cemu.Cemu.AssetFileManager;
+
 
 public class CemuApplication extends Application {
     private static CemuApplication application;
@@ -16,6 +18,8 @@ public class CemuApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        AssetFileManager assetFileManager = new AssetFileManager(this);
+        assetFileManager.copyProdKeys();
         application = this;
         DisplayMetrics displayMetrics = getResources().getDisplayMetrics();
         NativeLibrary.setDPI(displayMetrics.density);
